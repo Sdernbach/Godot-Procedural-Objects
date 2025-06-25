@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://4pu21rf01pfg"]
+
+[ext_resource type="Script" uid="uid://b5ctmtwodfpmq" path="res://creatures/snake/snake.gd" id="1_6swb1"]
+[ext_resource type="Script" uid="uid://cq32h3dp2k234" path="res://creatures/snake/snake_body.gd" id="2_500gr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_500gr"]
+
+[sub_resource type="Curve" id="Curve_500gr"]
+_data = [Vector2(0, 0.314607), 0.0, 0.0, 0, 0, Vector2(0.0425532, 1), 0.0, 0.0, 0, 0, Vector2(0.138298, 0.359551), 0.0, 0.0, 0, 0, Vector2(0.228723, 0.516854), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_500gr"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1)
+
+[node name="Snake" type="CharacterBody2D"]
+script = ExtResource("1_6swb1")
+
+[node name="HeadCollider" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_500gr")
+
+[node name="SnakeBody" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 20, 0, 40, 0, 60, 0, 80, 0, 100, 0, 120, 0, 140, 0, 160, 0, 180, 0)
+width = 20.0
+width_curve = SubResource("Curve_500gr")
+gradient = SubResource("Gradient_500gr")
+joint_mode = 2
+antialiased = true
+script = ExtResource("2_500gr")
